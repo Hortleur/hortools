@@ -1,4 +1,4 @@
  {
   "schemaVersion": 2,
-  "templateId": "node/alpine:3.22"
+  "templateId": "alpine:3.22"
  }
