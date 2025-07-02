@@ -1,4 +1,12 @@
  {
   "schemaVersion": 2,
-  "templateId": "node/22.16.0"
+  "templateId": "node/22.16.0",
+  "buildScript": [
+    "npm install",
+    "npm run build",
+    "echo '=== Build terminé ===='",
+    "echo '=== Contenu du dossier build ===='",
+    "ls -la build/"
+  ],
+  "startCommand": "node build/bin/server.js"
  }
