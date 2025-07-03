@@ -1,19 +1,54 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { loginValidator } from '#validators/login'
 import User from '#models/user'
+import * as Sentry from '@sentry/node'
 //import hash from '@adonisjs/core/services/hash'
 
 export default class AuthController {
   async login({ request }: HttpContext) {
-    const { email, password } = await request.validateUsing(loginValidator)
+    try {
+      const { email, password } = await request.validateUsing(loginValidator)
 
-    const user = await User.verifyCredentials(email, password)
+      try {
+        const user = await User.verifyCredentials(email, password)
 
-    const token = await User.accessTokens.create(user)
+        const token = await User.accessTokens.create(user)
 
-    return {
-      token: token,
-      ...user.serialize(),
+        Sentry.captureMessage('Connexion réussie', {
+          level: 'info',
+          extra: {
+            userId: user.id,
+            email: email,
+          },
+        })
+
+        return {
+          token: token,
+          ...user.serialize(),
+        }
+      } catch (error) {
+        Sentry.captureException(error, {
+          tags: {
+            type: 'authentication_error',
+          },
+          extra: {
+            email: email,
+          },
+        })
+
+        throw error
+      }
+    } catch (validationError) {
+      Sentry.captureException(validationError, {
+        tags: {
+          type: 'validation_error',
+        },
+        extra: {
+          validation_details: validationError.messages,
+        },
+      })
+
+      throw validationError
     }
   }
 

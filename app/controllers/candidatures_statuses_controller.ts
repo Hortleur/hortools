@@ -1,5 +1,8 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { createCandidaturesStatusValidator, updateCandidaturesStatusValidator } from '#validators/candidatures_status'
+import {
+  createCandidaturesStatusValidator,
+  updateCandidaturesStatusValidator,
+} from '#validators/candidatures_status'
 import CandidatureStatus from '#models/candidature_status'
 
 export default class CandidaturesStatusesController {

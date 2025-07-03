@@ -24,9 +24,7 @@ router
     router
       .post('/status', '#controllers/candidatures_statuses_controller.store')
       .use(middleware.auth({ guards: ['api'] }))
-    router
-      .get('/status', '#controllers/candidatures_statuses_controller.index')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/status', '#controllers/candidatures_statuses_controller.index')
     router
       .get('/status/:id', '#controllers/candidatures_statuses_controller.show')
       .use(middleware.auth({ guards: ['api'] }))
@@ -42,15 +40,11 @@ router
 //candidatures routes
 router
   .group(() => {
-    router
-      .get('/candidatures', '#controllers/candidatures_controller.index')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/candidatures', '#controllers/candidatures_controller.index')
     router
       .post('/candidatures', '#controllers/candidatures_controller.store')
       .use(middleware.auth({ guards: ['api'] }))
-    router
-      .get('/candidatures/:id', '#controllers/candidatures_controller.show')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/candidatures/:id', '#controllers/candidatures_controller.show')
     router
       .put('/candidatures/:id', '#controllers/candidatures_controller.update')
       .use(middleware.auth({ guards: ['api'] }))
@@ -63,15 +57,11 @@ router
 //techno types routes
 router
   .group(() => {
-    router
-      .get('/techno_types', '#controllers/techno_types_controller.index')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/techno_types', '#controllers/techno_types_controller.index')
     router
       .post('/techno_types', '#controllers/techno_types_controller.store')
       .use(middleware.auth({ guards: ['api'] }))
-    router
-      .get('/techno_types/:id', '#controllers/techno_types_controller.show')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/techno_types/:id', '#controllers/techno_types_controller.show')
     router
       .put('/techno_types/:id', '#controllers/techno_types_controller.update')
       .use(middleware.auth({ guards: ['api'] }))
@@ -84,15 +74,11 @@ router
 //technos routes
 router
   .group(() => {
-    router
-      .get('/technos', '#controllers/technos_controller.index')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/technos', '#controllers/technos_controller.index')
     router
       .post('/technos', '#controllers/technos_controller.store')
       .use(middleware.auth({ guards: ['api'] }))
-    router
-      .get('/technos/:id', '#controllers/technos_controller.show')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/technos/:id', '#controllers/technos_controller.show')
     router
       .put('/technos/:id', '#controllers/technos_controller.update')
       .use(middleware.auth({ guards: ['api'] }))
@@ -105,15 +91,11 @@ router
 //projects routes
 router
   .group(() => {
-    router
-      .get('/projects', '#controllers/projects_controller.index')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/projects', '#controllers/projects_controller.index')
     router
       .post('/projects', '#controllers/projects_controller.store')
       .use(middleware.auth({ guards: ['api'] }))
-    router
-      .get('/projects/:id', '#controllers/projects_controller.show')
-      .use(middleware.auth({ guards: ['api'] }))
+    router.get('/projects/:id', '#controllers/projects_controller.show')
     router
       .put('/projects/:id', '#controllers/projects_controller.update')
       .use(middleware.auth({ guards: ['api'] }))
