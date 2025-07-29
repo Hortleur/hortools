@@ -8,7 +8,7 @@ export default class ProjectsController {
    * Display a list of resource
    */
   async index({}: HttpContext) {
-    const projects = await Project.all()
+    const projects = await Project.query().preload('image')
     return {
       projects: projects,
     }
