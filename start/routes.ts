@@ -104,3 +104,8 @@ router
       .use(middleware.auth({ guards: ['api'] }))
   })
   .prefix('api')
+
+router
+  .post('/mail', '#controllers/mail_controller.sendMail')
+  .use(middleware.auth({ guards: ['api'] }))
+  .prefix('api')
