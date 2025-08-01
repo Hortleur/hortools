@@ -40,6 +40,18 @@ export default defineConfig({
     () => import('@adonisjs/mail/mail_provider'),
   ],
 
+  metaFiles: [
+    {
+      pattern: 'public/**',
+      reloadServer: false,
+    },
+    {
+      // **Important pour les mails**
+      pattern: 'resources/views/**/*.edge',
+      reloadServer: false,
+    },
+  ],
+
   /*
   |--------------------------------------------------------------------------
   | Preloads
