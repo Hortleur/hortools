@@ -84,20 +84,12 @@ export default class CandidaturesController {
 
       // Création d'une transaction pour assurer l'intégrité des données
       const updatedCandidature = await Candidature.transaction(async (trx) => {
-        const updated = await Candidature.updateOrCreate(
-          { id: candidature.id },
-          {
-            link: link,
-            company: company,
-            date_of_application: dateOfApplication,
-          },
-          { client: trx }
-        )
-
+        candidature.useTransaction(trx)
+        candidature.merge({ link, company, date_of_application: dateOfApplication })
+        await candidature.save()
         const status = await CandidatureStatus.findOrFail(statusId)
         await candidature.related('status').associate(status)
-
-        return updated
+        return candidature
       })
 
       return {
